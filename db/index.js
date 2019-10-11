@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var db = mongoose.connect('mongodb://localhost/DSTLD', { useNewUrlParser: true });
+var db = mongoose.connect('mongodb://localhost/DSTLD', { useNewUrlParser: true, useUnifiedTopology: true });
 
 var itemSchema = new mongoose.Schema({
   itemNumber: Number,
@@ -17,7 +17,6 @@ var itemSchema = new mongoose.Schema({
 });
 
 var itemDSTLD = mongoose.model('Item', itemSchema);
-
 
 // create database, set up model
 // export model
