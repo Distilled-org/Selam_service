@@ -7,11 +7,10 @@ app.use(express.static('public'))
 
 app.get('/item/:num', (req, res) => {
   var id = req.params.num;
-  db.itemDSTLD.findOne({ itemNumber: id }).exec((err, result) => {
+  db.itemDSTLD.findOne({ _id: id }).exec((err, result) => {
     if (err) {
       res.sendStatus(500)
     } else {
-      console.log(result)
       res.send(result)
     }
   })
