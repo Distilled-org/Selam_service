@@ -1,25 +1,26 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var db = mongoose.connect('mongodb://localhost/DSTLD', { useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.connect('mongodb://localhost/DSTLD', { useNewUrlParser: true, useUnifiedTopology: true });
 
-var itemSchema = new mongoose.Schema({
+const itemSchema = new mongoose.Schema({
   _id: Number,
   itemName: String,
   itemPrice: Number,
   afterpayImage: String,
   itemColors: [{
     colorName: String,
-    colorImage: String
+    colorImage: String,
   }],
   sizes: [String],
   sizeGuideUSA: [Array],
-  sizeGuideInt: [Array]
+  sizeGuideInt: [Array],
 });
 
-var itemDSTLD = mongoose.model('Item', itemSchema);
+const itemDSTLD = mongoose.model('Item', itemSchema);
 
 // create database, set up model
 // export model
 
 module.exports.db = db;
-module.exports.itemDSTLD = itemDSTLD;
+module.exports.ItemDSTLD = itemDSTLD;
+module.exports.close = mongoose.disconnect;
