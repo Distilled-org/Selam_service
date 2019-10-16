@@ -1,9 +1,21 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const db = require('./db/index.js');
 
-app.use(express.static('public'))
+const app = express();
+const port = 7000;
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.use(express.static('public'));
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.get('/item/:num', (req, res) => {
+  const id = req.params.num;
+  db.ItemDSTLD.findOne({ _id: id }).exec((err, result) => {
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+// eslint-disable-next-line no-console
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
