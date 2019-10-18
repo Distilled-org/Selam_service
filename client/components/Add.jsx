@@ -9,6 +9,9 @@ function Add() {
   color: white;
   margin-top: 15px;
   margin-bottom: 15px;
+  text-transform: bold;
+  font-weight: 700;
+  font-size: 10px;
   `;
 
   return (

@@ -12,14 +12,26 @@ class Sizes extends React.Component {
   }
 
   render() {
-    const { sizes } = this.props;
+    const { sizes, selectedSizeID, updateSize } = this.props;
 
     const GuideHolder = styled.div`
     display: inline-block;
     padding-left: 3px;
+    font-family: Helvetica;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.5px;
+    font-weight: 300;
+    color: #0a0a0a;
     `;
 
-    const SizeTitle = styled.h3``;
+    const SizeTitle = styled.h3`
+    font-family: Helvetica;
+    font-size: 12px;
+    color: #0a0a0a;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    `;
 
     const SizeButtons = styled.div`
     display: flex;
@@ -30,9 +42,17 @@ class Sizes extends React.Component {
     if (sizes) {
       return (
         <div>
-          <SizeTitle>Top Sizes</SizeTitle>
+          <SizeTitle>Top Size</SizeTitle>
           <SizeButtons>
-            {sizes.map((size, id) => <Size size={size} key={id} />)}
+            {sizes.map((size, index) => (
+              <Size
+                size={size}
+                key={index}
+                sizeID={index}
+                selectedSizeID={selectedSizeID}
+                updateSize={updateSize}
+              />
+            ))}
             <GuideHolder>
               Fit Guide
               <br />
