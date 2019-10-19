@@ -10,33 +10,6 @@ import Colors from './Colors.jsx';
 import Sizes from './Sizes.jsx';
 import Add from './Add.jsx';
 
-const Wrapper = styled.div`
-padding-left: 2%;
-padding-right: 20%;
-display: inline;
-`;
-
-const BigDiv = styled.div`
-display: flex;
-flex-direction: row;
-`;
-
-const ImageHolder = styled.div`
-width: 50%;
-padding-left: 10%;
-padding-right: 2%;
-height: 100%;
-display: inline;
-`;
-
-const ClosingText = styled.span`
-font-family: Helvetica;
-color: #0a0a0a;
-font-weight: 300;
-font-size: 12px;
-letter-spacing: .5px;
-`;
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -51,11 +24,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get('http://localhost:7000/item/77')
+    Axios.get(`http://localhost:7000/item/${(Math.floor(Math.random() * Math.floor(99))) + 1}`)
       .then((obj) => {
         this.setState({ item: obj.data, selectedColor: obj.data.itemColors[0].colorName, selectedColorID: 0 });
         // eslint-disable-next-line no-console
-        console.log(this.state.item);
+        console.log(obj.data);
       })
       .catch((err) => { console(err); });
   }
@@ -93,10 +66,12 @@ class App extends React.Component {
           />
           <Sizes
             sizes={this.state.item.sizes}
-            USA={this.state.item.sizeGuideUSA}
-            INT={this.state.item.sizeGuideInt}
+            US={this.state.item.sizeGuideUSA}
+            Int={this.state.item.sizeGuideInt}
             selectedSizeID={this.state.selectedSizeID}
             updateSize={this.updateSize}
+            name={this.state.item.itemName}
+            color={this.state.selectedColor}
           />
           <Add />
           <ClosingText>100% Guaranteed Fit. Free US Shipping + Returns.</ClosingText>
@@ -107,3 +82,30 @@ class App extends React.Component {
 }
 
 export default App;
+
+const Wrapper = styled.div`
+padding-left: 2%;
+padding-right: 20%;
+display: inline;
+`;
+
+const BigDiv = styled.div`
+display: flex;
+flex-direction: row;
+`;
+
+const ImageHolder = styled.div`
+width: 50%;
+padding-left: 10%;
+padding-right: 2%;
+height: 100%;
+display: inline;
+`;
+
+const ClosingText = styled.span`
+font-family: Helvetica;
+color: #0a0a0a;
+font-weight: 300;
+font-size: 12px;
+letter-spacing: .5px;
+`;

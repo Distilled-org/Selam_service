@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import styled from 'styled-components';
 
@@ -13,9 +14,7 @@ text-transform: capitalize;
 // eslint-disable-next-line react/prop-types
 const Name = ({ name, color }) => (
   <Title>
-    {name}
-    in
-    {color}
+    {name} in {color}
   </Title>
 );
 

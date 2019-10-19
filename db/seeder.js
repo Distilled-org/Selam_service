@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const db = require('./index.js');
 // use model to run for loop here
 
@@ -78,7 +79,7 @@ function fakeItem(i) {
     itemColors: getItemColors(),
     sizes: getItemSizes(),
     sizeGuideInt: [
-      ['US', '00', 0, 2, 4, 4, 6, 8, 10, 12],
+      ['US', '00', 0, '2-4', '4-6', 8, 10, 12],
       ['UK', 4, 6, 8, 10, 12, 14, 16],
       ['Italy', 36, 38, 40, 42, 44, 46, 48],
       ['France', 32, 34, 36, 38, 40, 42, 44],
@@ -99,12 +100,20 @@ function fakeItem(i) {
   };
 }
 
-function seeding() {
+async function seeding() {
+  const promiseArray = [];
   for (let i = 1; i < 101; i += 1) {
-    const item = new db.ItemDSTLD(fakeItem(i));
-    item.save();
+    // eslint-disable-next-line no-await-in-loop
+    const creating = await db.ItemDSTLD.create(fakeItem(i));
+    promiseArray.push(creating);
   }
-  process.exit();
+  return promiseArray;
 }
 
-seeding();
+seeding().then(() => {
+  console.log('finished!');
+  process.exit();
+}).catch((err) => {
+  console.log('uh-oh, error occurred!');
+  console.log(err);
+});

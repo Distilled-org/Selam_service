@@ -19,6 +19,9 @@ function Size(props) {
   background-color: ${(props) => (props.selected ? 'black' : 'white')};
   color: ${(props) => (props.selected ? 'white' : 'black')};
   font-weight: ${(props) => (props.selected ? '700' : '300')}
+  &:hover {
+    color: red;
+  };
   `;
 
   const updateWithThisSize = () => {
