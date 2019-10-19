@@ -1,6 +1,17 @@
 {
   "plugins": [
     "babel-plugin-styled-components",
-    "@babel/plugin-proposal-class-properties"
-  ]
+    "@babel/plugin-proposal-class-properties",
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        "@babel/env",
+        "@babel/react"
+      ],
+      "plugins": [
+        "transform-export-extensions"
+      ],
+    }
+  }
 }

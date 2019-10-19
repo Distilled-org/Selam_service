@@ -4,14 +4,18 @@
   "description": "web component",
   "main": "server.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose",
     "start": "nodemon server.js",
     "react-dev": "webpack -d --watch",
     "seed": "node db/seeder.js",
     "lint": "eslint --ignore-path .gitignore ."
   },
   "jest": {
-    "preset": "@shelf/jest-mongodb"
+    "preset": "@shelf/jest-mongodb",
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": [
+      "<rootDir>/SetupTests.js"
+    ]
   },
   "repository": {
     "type": "git",
@@ -39,8 +43,11 @@
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
     "@shelf/jest-mongodb": "^1.1.1",
+    "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-styled-components": "^1.10.6",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
+    "core-js": "^3.3.2",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "eslint": "^6.5.1",
@@ -50,6 +57,9 @@
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "jest": "^24.9.0",
+    "jsdom": "15.2.0",
+    "jsdom-global": "3.0.2",
+    "regenerator-runtime": "^0.13.3",
     "webpack": "^4.41.0",
     "webpack-cli": "^3.3.9"
   }

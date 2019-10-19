@@ -27,8 +27,6 @@ class App extends React.Component {
     Axios.get(`http://localhost:7000/item/${(Math.floor(Math.random() * Math.floor(99))) + 1}`)
       .then((obj) => {
         this.setState({ item: obj.data, selectedColor: obj.data.itemColors[0].colorName, selectedColorID: 0 });
-        // eslint-disable-next-line no-console
-        console.log(obj.data);
       })
       .catch((err) => { console(err); });
   }
