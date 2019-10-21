@@ -4,37 +4,25 @@ const SRC_DIR = path.join(__dirname, '/client');
 const DIST_DIR = path.join(__dirname, '/public');
 
 module.exports = {
-  entry: `${SRC_DIR}/index.jsx`,
+  entry: {
+    vendor: ['styled-components'],
+    app2: `${SRC_DIR}/index.jsx`,
+  },
   optimization: {
     splitChunks: {
-      chunks: 'async',
-      minSize: 30000,
-      maxSize: 0,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      automaticNameDelimiter: '~',
-      automaticNameMaxLength: 30,
+      minChunks: Infinity,
       name: true,
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10,
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
-        },
-      },
     },
   },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     path: DIST_DIR,
   },
   resolve: {
     extensions: ['*', '.js', '.jx', '.jsx'],
+    modules: [
+      path.resolve(__dirname, 'node_modules'),
+    ],
   },
   module: {
     rules: [
