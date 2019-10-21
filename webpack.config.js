@@ -13,6 +13,9 @@ module.exports = {
       minChunks: Infinity,
       name: true,
     },
+    runtimeChunk: {
+      name: 'vendor',
+    },
   },
   output: {
     filename: '[name].bundle.js',
