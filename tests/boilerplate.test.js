@@ -1,5 +1,8 @@
 /* eslint-disable no-undef */
-const { ItemDSTLD, close } = require('./db/index.js');
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+
+const { ItemDSTLD, close } = require('../db/index.js');
 
 describe('Database', () => {
   it('should retrieve an item from DSTLD database', async () => {
