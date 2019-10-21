@@ -12,7 +12,7 @@ import Size from '../client/components/Size';
 describe('Component: App', () => {
   const wrap = mount(<App />);
   it('should start with an empty state', () => {
-    expect(wrap.state('selectedSizeID')).toEqual(null);
+    expect(wrap.state('selectedColorID')).toEqual(null);
   });
 
   wrap.setState({ item: { sizes: ['xs', 's'] } });
