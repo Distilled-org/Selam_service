@@ -65,4 +65,5 @@ const Background = styled.div`
   left: 0;
   background: black;
   opacity: 0.5;
+  z-index: 98;
 `;
